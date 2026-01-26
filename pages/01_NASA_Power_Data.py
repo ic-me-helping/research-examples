@@ -57,7 +57,7 @@ if wind_elevation:
 else:
     wind_elevation = ""
     wind_surface = ""
-format_string = st.radio("Data Format:", options=["json", "csv"])
+format_string = "json"
 if debug: print(format_string)
 units = st.radio("Units:", options=["metric", "imperial"])
 if debug: print(units)
