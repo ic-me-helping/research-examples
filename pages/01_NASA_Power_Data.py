@@ -6,7 +6,7 @@ import time
 import geopandas as gpd
 from shapely.geometry import Point
 
-st.warning(st.markdown("This tool is a GIS-formatting utility for the [NASA POWER API](google.com). For real-time critical safety decisions, always cross-reference with NASA POWER Official."))
+st.warning("This tool is a GIS-formatting utility for the [NASA POWER API](google.com). For real-time critical safety decisions, always cross-reference with NASA POWER Official.")
 
 global debug, BASE_DIR, RESEARCH_DIR
 debug = True
