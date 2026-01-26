@@ -49,6 +49,7 @@ if st.toggle("Parameter Input: Checkbox"):
     parameter = ",".join(selected_parameters)
 else:
     parameter = st.text_input("Parameters comma-seperated (T2M, WD50M, etc.):")
+    parameter = parameter.replace(" ", "")
 if st.toggle("Help with Parameters"):
     st.image("Screenshot 2026-01-26 at 16.58.47.png")
     """
