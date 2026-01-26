@@ -49,15 +49,15 @@ if st.toggle("Parameter Input: Checkbox"):
     parameter = ",".join(selected_parameters)
 else:
     parameter = st.text_input("Parameters comma-seperated (T2M, WD50M, etc.):")
-    if st.toggle("Help with Parameters"):
-        st.image("Screenshot 2026-01-26 at 16.58.47.png")
-        """
-        The parameters are determined by the gallery at [NASA Power](https://power.larc.nasa.gov/parameters/). Use these to filter the type of data you need and get their parameter tag.
-        """
-        st.image("Screenshot 2026-01-26 at 17.00.26.png")
-        """
-        To get a parameter tag, widen/open the parameter and get the smaller text at the top.
-        """
+if st.toggle("Help with Parameters"):
+    st.image("Screenshot 2026-01-26 at 16.58.47.png")
+    """
+    The parameters are determined by the gallery at [NASA Power](https://power.larc.nasa.gov/parameters/). Use these to filter the type of data you need and get their parameter tag.
+    """
+    st.image("Screenshot 2026-01-26 at 17.00.26.png")
+    """
+    To get a parameter tag, widen/open the parameter and get the smaller text at the top.
+    """
 if debug: print(parameter)
 site_elevation = st.number_input("Site Elevation (Meters):", format="%.3f")
 if debug: print(site_elevation)
