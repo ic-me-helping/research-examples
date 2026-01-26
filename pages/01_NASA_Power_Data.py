@@ -8,6 +8,7 @@ from shapely.geometry import Point
 
 st.warning("This tool is a GIS-formatting utility for the [NASA POWER API](https://power.larc.nasa.gov/docs/services/api/temporal/). For real-time critical safety decisions, always cross-reference with NASA POWER Official.")
 st.warning("If the value is '-999', that means there is no data there. I'll clean it up soon.")
+st.info("It's only hourly data, more connections will come soon while I figure out Streamlit Cloud")
 global debug, BASE_DIR, RESEARCH_DIR
 debug = True
 if st.sidebar.toggle("Debug Mode:"):
