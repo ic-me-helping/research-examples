@@ -1,5 +1,3 @@
-os
-sys
 time
 geopandas
 fiona
