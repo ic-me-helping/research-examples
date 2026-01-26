@@ -1,0 +1,9 @@
+streamlit
+pandas
+os
+sys
+time
+geopandas
+fiona
+pyogrio
+requests
