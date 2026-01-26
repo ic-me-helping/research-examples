@@ -19,13 +19,6 @@ sys.path.append(RESEARCH_DIR)
 from NASA_Power_API import nasa_power_api
 print(BASE_DIR)
 
-# Streamlit info
-
-# Variables and parameters
-st.sidebar.write("Select Download Format Before Querying (TRYING TO FIX LATER)")
-
-## File Saving and Data Display
-
 ## NASA Power API Parameters
 start = st.date_input("Start Date (YYYYMMDD):", format="YYYY/MM/DD")
 if start:
@@ -79,14 +72,11 @@ if "api_data" not in st.session_state:
 class NASAPowerData:
     def __init__(self, parameters):
         self.parameters = parameters
-        # Pull data from session state if it exists
         self.data = st.session_state.api_data 
 
     def fetch_data(self):
-        # Your existing API call logic
         fetched = nasa_power_api(parameters=self.parameters, user_input=False)
         if fetched and isinstance(fetched, dict):
-            # Save to session state!
             st.session_state.api_data = fetched
             self.data = fetched
             st.success("Data Retrieved Successfully!")
@@ -110,10 +100,8 @@ class NASAPowerData:
             if debug: print(f"Error: 'parameters' key not found in data: {self.data}")
             return
 
-        # Process and Display Parameter Info
         nasa_parameter_info = self.data["parameters"]
 
-        # Create DataFrame for Parameter Info
         parameter_info_list = []
         for param_data in nasa_parameter_info:
             param = nasa_parameter_info[param_data]
@@ -130,11 +118,10 @@ class NASAPowerData:
             st.error("No data available. Please fetch data first.")
             return
 
-        # Create and Display Separate DataFrames for Each Parameter's Values
         nasa_parameter_data = self.data["properties"]["parameter"]
         nasa_parameter_info = self.data["parameters"]
 
-        combined_geojson_data = []  # To store all parameter data for GeoJSON
+        combined_geojson_data = []
         crs_options = {
             "WGS 84 (EPSG:4326)": "EPSG:4326"
         }
@@ -144,7 +131,6 @@ class NASAPowerData:
         for param in nasa_parameter_data:
             parameter_values_list = []
             for date, value in nasa_parameter_data[param].items():
-                # Parse the date and time if available
                 try:
                     parsed_date = pd.to_datetime(date, format="%Y%m%d%H")
                 except ValueError:
@@ -156,7 +142,6 @@ class NASAPowerData:
                     "Units": nasa_parameter_info[param]["units"]
                 })
 
-            # Convert 'Date' column to string format (ISO 8601 with time) for JSON serialization
             parameter_values_df = pd.DataFrame(parameter_values_list)
             parameter_values_df["Date"] = parameter_values_df["Date"].dt.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -164,12 +149,10 @@ class NASAPowerData:
             parameter_values_df["Longitude"] = self.parameters["longitude"]
             parameter_values_df["Parameter"] = param
 
-            # Create geometry column for GeoPandas
             parameter_values_df["geometry"] = parameter_values_df.apply(
                 lambda row: Point(row["Longitude"], row["Latitude"]), axis=1
             )
 
-            # Set the CRS dynamically based on user selection
             gdf = gpd.GeoDataFrame(parameter_values_df, geometry="geometry", crs=selected_crs_code)
 
             st.sidebar.download_button(
@@ -179,19 +162,14 @@ class NASAPowerData:
                 mime="application/geo+json"
             )
 
-            # Add to combined GeoJSON data
             combined_geojson_data.append(gdf)
 
-            # Convert 'geometry' column to WKT format for Streamlit display
             parameter_values_df["geometry_wkt"] = parameter_values_df["geometry"].apply(lambda geom: geom.wkt if geom else None)
 
-            # Drop the original 'geometry' column for Streamlit display
             display_df = parameter_values_df.drop(columns=["geometry"])
 
-            # Display the DataFrame with WKT geometry
             st.dataframe(display_df, width="stretch")
 
-        # Combine all GeoDataFrames into one and save as a single GeoJSON
         if combined_geojson_data:
             combined_gdf = gpd.GeoDataFrame(pd.concat(combined_geojson_data, ignore_index=True))
             st.sidebar.download_button(
@@ -217,15 +195,12 @@ parameters = {
     "wind-surface": wind_surface
 }
 
-### Initialize Class Objects
 nasa_power_api_instance = NASAPowerData(parameters=parameters)
 
-### Display Logic
 if st.button("Get NASA Power Data"):
     nasa_power_api_instance.fetch_data()
 
-# Logic to RENDER data if it exists in session state (even after a re-run)
 if st.session_state.api_data is not None:
-    nasa_power_api_instance.data = st.session_state.api_data # Ensure class has it
+    nasa_power_api_instance.data = st.session_state.api_data
     nasa_power_api_instance.process_data()
     nasa_power_api_instance.process_parameter_values()
