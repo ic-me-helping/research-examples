@@ -6,7 +6,7 @@ import time
 import geopandas as gpd
 from shapely.geometry import Point
 
-st.warning("This tool is a GIS-formatting utility for the [NASA POWER API](https://power.larc.nasa.gov/docs/services/api/temporal/). For real-time critical safety decisions, always cross-reference with NASA POWER Official.")
+st.warning("This tool is a GIS-formatting utility for the [NASA POWER API](https://power.larc.nasa.gov/docs/tutorials/). For real-time critical safety decisions, always cross-reference with NASA POWER Official.")
 st.warning("There may be extra values in the downloaded data compared to what is show in the tables here. This is because this app removes all '-999' values from the display tables, but the downloads contain the full dataset including these null/missing value indicators.")
 st.info("It's only hourly data, more connections will come soon while I figure out Streamlit Cloud")
 global debug, BASE_DIR, RESEARCH_DIR
