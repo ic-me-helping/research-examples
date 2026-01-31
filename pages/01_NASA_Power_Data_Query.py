@@ -102,7 +102,7 @@ st.divider()
 #### Row 4
 community = st.selectbox("Community:", options=["re"])
 if debug: print(community)
-format_string = st.radio(label="Format:", options=["json", "csv"])
+format_string = st.radio(label="Format:", options=["json"])
 if debug: print(format_string)
 header = "true"
 if debug: print(header)
