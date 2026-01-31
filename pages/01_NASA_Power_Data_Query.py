@@ -100,7 +100,7 @@ with row3_col3:
 
 st.divider()
 #### Row 4
-community = st.selectbox("Community:", options=["re"])
+community = st.radio("Community:", options=["re"])
 if debug: print(community)
 format_string = st.radio(label="Format:", options=["json"])
 if debug: print(format_string)
