@@ -19,7 +19,7 @@ uploaded_image = st.file_uploader("Upload an image for OCR processing", type=["p
 
 
 # Display GPS Coordinates
-if uploaded_images:
+if uploaded_image:
     temp_file_path = os.path.join(TEMP_DIR, uploaded_image.name)
     
     with open(temp_file_path, "wb") as f:
