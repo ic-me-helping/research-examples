@@ -15,7 +15,7 @@ TEMP_DIR = "temp_uploads"
 if not os.path.exists(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
-uploaded_image = st.file_uploader("Upload an image for OCR processing", type=["png", "jpg", "jpeg"], accept_multiple_files=False)
+uploaded_image = st.file_uploader("Upload an image for metadata processing", type=["png", "jpg", "jpeg"], accept_multiple_files=False)
 
 
 # Display GPS Coordinates
