@@ -2,3 +2,4 @@ geopandas
 fiona
 pyogrio
 requests
+pillow
