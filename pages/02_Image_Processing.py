@@ -32,7 +32,7 @@ if uploaded_image:
         gps_data = image_location(temp_file_path)
         st.subheader("Extracted GPS Data:")
         st.json(gps_data)
-    except error:
+    except NameError:
         st.write("Exif tags could not be found for GPS data.")
 
         
