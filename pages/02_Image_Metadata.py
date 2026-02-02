@@ -23,9 +23,9 @@ if uploaded_image:
     temp_file_path = os.path.join(TEMP_DIR, uploaded_image.name)
     
     with open(temp_file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
+        f.write(uploaded_images.getbuffer())
     
-    st.image(uploaded_file, caption="Uploaded Image")
+    st.image(tempe_file_path, caption="Uploaded Image")
 
     # Extract GPS data
     gps_data = image_location(temp_file_path)
