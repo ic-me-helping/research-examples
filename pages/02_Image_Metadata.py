@@ -15,24 +15,22 @@ TEMP_DIR = "temp_uploads"
 if not os.path.exists(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
-uploaded_images = st.file_uploader("Upload an image for OCR processing", type=["png", "jpg", "jpeg"], accept_multiple_files=False)
+uploaded_image = st.file_uploader("Upload an image for OCR processing", type=["png", "jpg", "jpeg"], accept_multiple_files=False)
 
 
 # Display GPS Coordinates
 if uploaded_images:
-    for uploaded_file in uploaded_images:
+    temp_file_path = os.path.join(TEMP_DIR, uploaded_image.name)
     
-        temp_file_path = os.path.join(TEMP_DIR, uploaded_file.name)
-        
-        with open(temp_file_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        
-        st.image(uploaded_file, caption="Uploaded Image", width="stretch")
+    with open(temp_file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
     
-        # Extract GPS data
-        gps_data = image_location(temp_file_path)
-        st.subheader("Extracted GPS Data:")
-        st.json(gps_data)
-    
-        # Delete temporary file
-        os.remove(temp_file_path)
+    st.image(uploaded_file, caption="Uploaded Image")
+
+    # Extract GPS data
+    gps_data = image_location(temp_file_path)
+    st.subheader("Extracted GPS Data:")
+    st.json(gps_data)
+
+    # Delete temporary file
+    os.remove(temp_file_path)
