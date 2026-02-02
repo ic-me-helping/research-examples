@@ -23,7 +23,7 @@ if uploaded_image:
     temp_file_path = os.path.join(TEMP_DIR, uploaded_image.name)
     
     with open(temp_file_path, "wb") as f:
-        f.write(uploaded_images.getbuffer())
+        f.write(uploaded_image.getbuffer())
     
     st.image(tempe_file_path, caption="Uploaded Image")
 
