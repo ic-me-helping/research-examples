@@ -19,19 +19,20 @@ uploaded_images = st.file_uploader("Upload an image for OCR processing", type=["
 
 
 # Display GPS Coordinates
-for uploaded_file in uploaded_images:
-
-    temp_file_path = os.path.join(TEMP_DIR, uploaded_file.name)
+if uploaded_images:
+    for uploaded_file in uploaded_images:
     
-    with open(temp_file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
+        temp_file_path = os.path.join(TEMP_DIR, uploaded_file.name)
+        
+        with open(temp_file_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+        
+        st.image(uploaded_file, caption="Uploaded Image", width="stretch")
     
-    st.image(uploaded_file, caption="Uploaded Image", width="stretch")
-
-    # Extract GPS data
-    gps_data = image_location(temp_file_path)
-    st.subheader("Extracted GPS Data:")
-    st.json(gps_data)
-
-    # Delete temporary file
-    os.remove(temp_file_path)
+        # Extract GPS data
+        gps_data = image_location(temp_file_path)
+        st.subheader("Extracted GPS Data:")
+        st.json(gps_data)
+    
+        # Delete temporary file
+        os.remove(temp_file_path)
