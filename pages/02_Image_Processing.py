@@ -30,12 +30,11 @@ if uploaded_image:
     # Extract GPS data
     try:
         gps_data = image_location(temp_file_path)
-        
-        if error:
-            st.write("Exif tags could not be found for GPS data.")
-        else:
-            st.subheader("Extracted GPS Data:")
-            st.json(gps_data)
+        st.subheader("Extracted GPS Data:")
+        st.json(gps_data)
+    except error:
+        st.write("Exif tags could not be found for GPS data.")
+
         
 
     # Delete temporary file
