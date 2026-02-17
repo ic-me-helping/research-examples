@@ -18,7 +18,7 @@ To run the server without the internet, a local Python environment is required.
 
 1. **Clone the Repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ic-me-helping/research-examples.git
    cd research-examples
 
 2. **Install Dependencies:**
