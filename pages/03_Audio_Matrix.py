@@ -41,26 +41,6 @@ The live audio engine requires direct hardware access. To implement this on-site
 and stationary microphones, download the engine from the repository and run it locally.
 """)
 
-with st.expander("View Engineering Logic (Local Script)"):
-    st.code("""
-# IC.ME Audio Matrix Controller
-# Strategic Priority Logic: Stationary > Field (Safety = Constant)
-
-import sounddevice as sd
-import numpy as np
-
-# Config
-AGG_DEVICE_NAME = "AutoDucker"
-OUT_DEVICE_NAME = "BlackHole 2ch"
-
-# Logic Thresholds
-THRESHOLD_DB = -35.0   
-ATTACK_TIME = 0.05     
-RELEASE_TIME = 0.5     
-
-# [The rest of the cleaned AudioEngine class follows...]
-    """, language="python")
-
 st.write("For custom logic gate implementation or VDC/IT SOP development, [reach out here.](https://ilyasclouse.me)")
 
 # Footer Navigation
