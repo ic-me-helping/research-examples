@@ -26,5 +26,6 @@ To run the server without the internet, a local Python environment is required.
    pip install -r requirements.txt
 
 3. **Configure Local Hardware:**
-   Run `python -m sounddevice` to identify your hardware IDs.
-   Update the `AGG_DEVICE_NAME` in `Research/Audio_Matrix_engine.py`
+   For Audio Matrix:
+   - Run `python -m sounddevice` to identify your hardware IDs.
+   - Update the `AGG_DEVICE_NAME` in `Research/Audio_Matrix_engine.py`
