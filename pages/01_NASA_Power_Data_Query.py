@@ -247,3 +247,16 @@ if st.session_state.api_data is not None:
     nasa_power_api_instance.data = st.session_state.api_data
     nasa_power_api_instance.process_data()
     nasa_power_api_instance.process_parameter_values()
+
+# Footer Navigation
+st.divider()
+nav_col1, nav_col2, nav_col3 = st.columns(3)
+with nav_col1:
+    if st.button("*← Return to Engineering Hub"):
+        st.switch_page("StreamlitHome.py")
+with nav_col2:
+    if st.button("Bridge to Image Processing →"):
+        st.switch_page("pages/02_Image_Processing.py")
+with nav_col3:
+    if st.button("Bridge to Audio Matrix Controller →"):
+        st.switch_page("pages/03_Audio_Matrix.py")

@@ -1,5 +1,9 @@
+streamlit
+pandas
 geopandas
 fiona
 pyogrio
 requests
 pillow
+numpy
+sounddevice

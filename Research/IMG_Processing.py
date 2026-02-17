@@ -1,6 +1,10 @@
 from PIL import ExifTags, Image
 
-def image_location(img_path): # Only functional for photos with GPS data and ExifTags
+def image_location(img_path):
+    """
+    Validation through Data Ingestion.
+    Extracts spatial metadata from site documentation to visualize conditions with precision.
+    """
     img = Image.open(img_path)
     exif_reader = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
 

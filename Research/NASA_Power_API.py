@@ -4,7 +4,10 @@ import requests
 # Scientific Functions
 ## Creates NASA Power API URL and retrieves data
 def nasa_power_api(parameters, user_input=False):
-    
+    """
+    Environmental Risk Modeling: NASA Power API Ingestion.
+    This module anchors public data to specific GPS coordinates to determine open-field conditions.
+    """
     # Allow users to input parameters through terminal
     if user_input:
         start = input("Start Date (YYYYMMDD):")
